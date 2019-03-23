@@ -1,7 +1,7 @@
 {
-  "name": "passport-openidconnect",
-  "version": "0.0.2",
-  "description": "OpenID Connect authentication strategy for Passport.",
+  "name": "passport-liberty-oidc",
+  "version": "0.0.1",
+  "description": "Liberty OpenID Connect authentication strategy for Passport.",
   "keywords": [
     "passport",
     "openid",
@@ -18,10 +18,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/jaredhanson/passport-openidconnect.git"
+    "url": "git://github.com/sedgewickmm18/passport-openidconnect.git"
   },
   "bugs": {
-    "url": "http://github.com/jaredhanson/passport-openidconnect/issues"
+    "url": "http://github.com/sedgewickmm18/passport-openidconnect/issues"
   },
   "license": "MIT",
   "licenses": [
@@ -34,15 +34,15 @@
   "dependencies": {
     "oauth": "0.9.x",
     "passport-strategy": "1.x.x",
-    "request": "^2.75.0",
+    "request": "^2.88.0",
     "webfinger": "0.4.x"
   },
   "devDependencies": {
     "chai": "2.x.x",
     "chai-passport-strategy": "1.x.x",
-    "jsonwebtoken": "^7.1.9",
+    "jsonwebtoken": "^8.5.1",
     "make-node": "0.3.x",
-    "mocha": "2.x.x",
+    "mocha": "^6.0.2",
     "proxyquire": "^1.7.10",
     "sinon": "^1.17.6"
   },
