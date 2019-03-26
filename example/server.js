@@ -6,7 +6,10 @@ var passport = require('passport');
 //var Strategy = require('passport-openidconnect').Strategy;
 var Strategy = require('passport-liberty-oidc').Strategy;
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// Jazz Authorization server port = 9643, embedded OIDC on 9443
+const port = 9643;
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // support self-signed certificates
 
 
 // Configure the Twitter strategy for use by Passport.
@@ -21,13 +24,13 @@ passport.use(new Strategy({
     //clientSecret: process.env.CLIENT_SECRET,
     scope: '',
     isLiberty: true,
-    issuer: 'https://localhost:9443/oidc/endpoint/markus',
+    issuer: 'https://localhost:'+port+'/oidc/endpoint/jazzop',
     clientID: 'markus01',
     clientSecret: 'markus01',
-    authorizationURL: 'https://localhost:9443/oidc/endpoint/markus/authorize',
-    tokenURL: 'https://localhost:9443/oidc/endpoint/markus/token',
+    authorizationURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/authorize',
+    tokenURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/token',
     callbackURL: 'https://localhost:3000/callback',
-    userInfoURL: 'https://localhost:9443/oidc/endpoint/markus/userinfo'
+    userInfoURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/userinfo'
   },
   function(token, tokenSecret, profile, cb) {
     // In this example, the user's Twitter profile is supplied as the user
