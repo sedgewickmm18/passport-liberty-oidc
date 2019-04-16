@@ -111,6 +111,7 @@ app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   function(req, res){
     res.render('profile', { user: req.user });
+    console.log('User: ' + JSON.stringify(req.user));
   });
 
 var sslOptions = {
