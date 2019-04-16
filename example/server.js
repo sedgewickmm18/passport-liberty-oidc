@@ -2,12 +2,19 @@ const fs = require('fs');
 const https = require('https');
 var express = require('express');
 var passport = require('passport');
-//var Strategy = require('../passport-openidconnect').Strategy;
-//var Strategy = require('passport-openidconnect').Strategy;
 var Strategy = require('passport-liberty-oidc').Strategy;
 
 // Jazz Authorization server port = 9643, embedded OIDC on 9443
-const port = 9643;
+//const port = 9643;
+const port = 9443;
+
+// ID of the OAuth provider
+//  this is  preconfigured for Jazz Authorization server
+//const oauthProviderId = 'jazzop'
+
+// can be freely defined for Jazz Team Server, liberty profile example:
+//     <openidConnectProvider id="markus" oauthProviderRef="markus" /> 
+const oauthProviderId = 'markus'
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // support self-signed certificates
 
@@ -24,13 +31,13 @@ passport.use(new Strategy({
     //clientSecret: process.env.CLIENT_SECRET,
     scope: '',
     isLiberty: true,
-    issuer: 'https://localhost:'+port+'/oidc/endpoint/jazzop',
+    issuer: 'https://localhost:' + port + '/oidc/endpoint/' + oauthProviderId,
     clientID: 'markus01',
     clientSecret: 'markus01',
-    authorizationURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/authorize',
-    tokenURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/token',
+    authorizationURL: 'https://localhost:' +port +'/oidc/endpoint/' + oauthProviderId + '/authorize',
+    tokenURL: 'https://localhost:' + port + '/oidc/endpoint/' + oauthProviderId + '/token',
     callbackURL: 'https://localhost:3000/callback',
-    userInfoURL: 'https://localhost:'+port+'/oidc/endpoint/jazzop/userinfo'
+    userInfoURL: 'https://localhost:' + port + '/oidc/endpoint/' + oauthProviderId + '/userinfo'
   },
   function(token, tokenSecret, profile, cb) {
     // In this example, the user's Twitter profile is supplied as the user
